@@ -1,5 +1,6 @@
 # Self Service Cashier
-This project is a Command Line Interface (CLI) based program with a case study of a self-service cashier system created using the Python programming language. 
+<img src="https://user-images.githubusercontent.com/68576505/223395308-bc9a8817-e3df-4a51-bfdb-7f9b37984c48.png" alt="Telco Customer Churn" width="60%">
+Photo by <a href="https://unsplash.com/@simonkadula?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Simon Kadula</a> on <a href="https://unsplash.com/photos/-gkndM1GvSA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 
 ## Problem Description
 Andi is the owner of a large supermarket in one of the cities in Indonesia. Andi plans to improve the business process by creating a self-service cashier system in his supermarket with the hope that customers can directly input the items purchased, the quantity of items purchased, the item price, and other features. Customers who are not in the city can also purchase goods from the supermarket.
