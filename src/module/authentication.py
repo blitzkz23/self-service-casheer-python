@@ -1,8 +1,8 @@
-'''
-This module provide functionality that connect User's account to database.
-'''
-def login(user):
-    print('Successfully login')
+"""
+This module provide functionality that connect User"s account to database.
+"""
+def login():
+    print("Successfully login")
 
-def register(user):
-    print('Your account has been registered')
+def register():
+    print("Your account has been registered")
