@@ -25,5 +25,5 @@ class User(Base):
         return f"<User(name='{self.name}', email='{self.email}')>"
 
     def welcome_user(self):
-        return f'Hello, {self.name} what would you like to do?'
+        return f'--- Selamat datang, {self.name} apa yang ingin kamu lakukan? ---'
     

@@ -13,17 +13,22 @@ def main():
     welcome_menu()
 
     # User authentication
+    current_user = None
+
     is_input_valid = False
     while not is_input_valid:
         answer = input("Input your answer (1/2) ")
         if answer == "1":
-            login(db)
+            current_user = login(db)
+            print(f'cok {current_user}')
             is_input_valid = True
         elif answer == "2":
             register(db)
             is_input_valid = True
         else:
-            print("Invalid input. Please only select either login (1) or register (2).")   
+            print("Input Anda salah, silahkan pilih antara Login(1) atau Register(2).")   
+
+    print(f'cok 2 {current_user.email}')
 
 
 if __name__ == "__main__":
