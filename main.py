@@ -17,26 +17,13 @@ def main():
     while not is_input_valid:
         answer = input("Input your answer (1/2) ")
         if answer == "1":
-            login()
+            login(db)
             is_input_valid = True
         elif answer == "2":
-            register()
+            register(db)
             is_input_valid = True
         else:
-            print("Invalid input. Please only select either login (1) or register (2).")
-
-    # Try db connection
-    new_user = User(email="john@gmail.com", name="johddn", password="www")
-
-    db.add(new_user)
-
-    db.commit()
-
-    user = db.query(User).filter_by(name="john").first()
-
-    print(f'namamu {user.name}')
-
-    db.close
+            print("Invalid input. Please only select either login (1) or register (2).")   
 
 
 if __name__ == "__main__":
