@@ -1,5 +1,5 @@
 """
-This module provide functionality that connect User"s account to database.
+This module provide functionality that connect User's account to database.
 """
 from sqlalchemy.orm import Session
 from typing import Optional
@@ -56,6 +56,7 @@ def login(db: Session):
     # Check if user in database
     user = db.query(User).filter(User.email == email, User.password == password).first()
     if user:
+        print("-----------------------------------------------------")
         print(f"{user.welcome_user()}")
         return user
     else:

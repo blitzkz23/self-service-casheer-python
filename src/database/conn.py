@@ -1,3 +1,7 @@
+"""
+This file provides a database engine and session for interacting with a SQLite database.
+"""
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from .base import Base
