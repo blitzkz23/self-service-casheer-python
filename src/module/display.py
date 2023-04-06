@@ -2,6 +2,8 @@
 This module provide functionality that are related to display/print some stuff.
 """
 
+from tabulate import tabulate
+
 def show_welcome_menu():
     """
     This function shows the initial welcome greeting menu on the self service cashier program.
@@ -31,3 +33,14 @@ def show_transaction_menu():
     print("6. Check out pesanan")
     print("7. Keluar dari program")
     print("------------------------------------------------------")
+
+def show_order(order: dict):
+    table = []
+    for item_name, item_info in order.items():
+        qty = item_info["qty"]
+        price = item_info["price"]
+        total = qty * price
+        table.append([item_name, qty, price, total])
+
+    headers = ["Item Name", "Qty", "Price", "Total"]
+    print(tabulate(table, headers = headers, tablefmt="grid"))
