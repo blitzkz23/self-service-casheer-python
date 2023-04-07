@@ -131,3 +131,14 @@ def delete_item(order: dict, item_name: str):
     print("--- Barang telah dihapus ---")
 
     return order
+
+def reset_transaction(order: dict):
+    """
+    Reset transaction anew.
+
+    Args:
+        order (dict): The dictionary representing the order.
+    """
+    print("--- Transaksi telah dibatalkan. Keranjang Anda kosong ---")
+    
+    return order.clear()

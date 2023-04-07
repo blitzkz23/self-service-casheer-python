@@ -61,11 +61,14 @@ def main():
                     item_name = input("Nama barang yang ingin diubah? (masukkan nama atau masukkan 'x' untuk membatalkan): \n> ")
                     
                     if item_name.lower() == "x":
+                        # Cancel and return to main menu
                         break
                     elif item_name not in order:
+                        # Retry input
                         print("Nama barang tidak ditemukan.  Silahkan input lagi")
                         continue
                     else:
+                        # Update item
                         print("--- PEMBERITAHUAN: Silahkan kosongkan input apabila tidak perlu diubah")
                         while True:
                             new_name = input("1. Masukkan nama barang yang baru: ")
@@ -117,8 +120,12 @@ def main():
                         show_order(order)
                         break                  
             elif menu_choice == "4":
-                print("Hello world")
+                # Reset transaction
+                reset_transaction(order)
+
+                show_order(order)
             elif menu_choice == "5":
+                # Check order
                 show_order(order)
             elif menu_choice == "6":
                 # check_out()
