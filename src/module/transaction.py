@@ -1,6 +1,8 @@
 """
 This module provide functionality related to transaction on main program
 """
+from sqlalchemy.orm import Session
+from ..entity.transaction import Transaction
 
 def ask_item_input():
     """
@@ -142,3 +144,91 @@ def reset_transaction(order: dict):
     print("--- Transaksi telah dibatalkan. Keranjang Anda kosong ---")
     
     return order.clear()
+
+def calculate_total_sum(order: dict):
+    """
+    Calculate total sums of given dictionary
+
+    Args:
+        order (dict): The dictionary representing the order.
+
+    Returns:
+        total_sum (float): The total sum of transaction price.    
+    """
+    total_sum = 0
+    for item in order.values():
+        qty = item["qty"]
+        price = item["price"]
+        item_total = qty * price
+        total_sum += item_total
+
+    return total_sum
+
+def calculate_discount(order: dict):
+    """
+    Calculate discount percent after certain threshold below.
+        1. Total > 200k, 5% disc.
+        2. Total > 300k, 6% disc.
+        3. Total > 500k, 7% disc.
+
+    Args:
+        order (dict): The dictionary representing the order.
+
+    Returns:
+        discount_percentage (int): The number of discount percentage.
+    """
+    total_sum = calculate_total_sum(order)
+
+    if total_sum > 500000:
+        return 7
+    elif total_sum > 300000:
+        return 6
+    elif total_sum > 200000:
+        return 5
+    else:
+        return 0
+    
+def calculate_price_after_discount(order: dict):
+    """
+    Calculate the total price after discount.
+
+    Args:
+        order (dict): The dictionary representing the order.
+    
+    Returns:
+        price_after_discount (float): The total price after discount.
+    """
+    total_sum = calculate_total_sum(order)
+    discount = calculate_discount(order)
+
+    price_after_discount = total_sum * (1 - (discount / 100))
+
+    return price_after_discount
+
+def insert_to_database(db: Session, order: dict, user_id: int):
+    """
+    Insert the transaction into database
+
+    Args:
+        order (dict): The dictionary representing the order.
+    
+    Returns:
+        db (Session): database's session
+        price_after_discount (float): The total price after discount.
+        current_user: current logged in user
+    """
+
+    for item_name, item in order.items():
+        qty = item["qty"]
+        price = item["price"]
+        total = calculate_total_sum(order)
+        disc = calculate_discount(order)
+        after_disc = calculate_price_after_discount(order)
+
+        transaction = Transaction(user_id, item_name, qty,
+                                  price, total, disc, after_disc)
+        db.add(transaction)
+        db.commit()
+        coba = db.query(Transaction).filter(Transaction.item_name == item_name).first()
+        print(coba)
+        

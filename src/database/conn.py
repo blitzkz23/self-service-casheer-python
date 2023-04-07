@@ -6,6 +6,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from .base import Base
 from ..entity.user import User
+from ..entity.transaction import Transaction
 
 engine = create_engine("sqlite:///cashier.db", echo=True, future=True)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -18,4 +19,4 @@ def get_db():
     finally:
         db.close()
 
-Base.metadata.create_all(bind=engine, tables=[User.__table__]) 
+Base.metadata.create_all(bind=engine) 

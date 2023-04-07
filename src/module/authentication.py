@@ -30,7 +30,6 @@ def register(db: Session):
     db.add(user)
     db.commit()
 
-    user = db.query(User).filter(User.email == email, User.password == password).first()
     print("Anda telah berhasil terdaftar.  Silahkan masuk")
     login(db)
     
@@ -60,7 +59,7 @@ def login(db: Session):
         print(f"{user.welcome_user()}")
         return user
     else:
-        print("Email atau password Anda salah. Silahkan coba lagi.")
+        print("--- ERROR: Email atau password Anda salah. Silahkan coba lagi ---")
         login(db)  # recursive call if login fails
 
         
