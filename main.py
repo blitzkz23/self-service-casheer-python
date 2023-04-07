@@ -44,7 +44,7 @@ def main():
                 while True:
                     print("-----------------------------------------------------")
                     order = add_item(order)
-                    print("Order Anda saat ini: ")
+                    
                     show_order(order)
                     print("")
                     input_again = input("Mau menambahkan lagi? (y/n) \n> ")
@@ -54,11 +54,9 @@ def main():
                         break
             elif menu_choice == "2":
                 # Update item
-                print("Order Anda saat ini: ")
                 show_order(order)
 
                 print("Order mana yang ingin diubah? ")
-
                 while True:
                     item_name = input("Nama barang yang ingin diubah? (masukkan nama atau masukkan 'x' untuk membatalkan): \n> ")
                     
@@ -105,7 +103,6 @@ def main():
                             break
             elif menu_choice == "3":
                 # Delete item
-                print("Order Anda saat ini: ")
                 show_order(order)
 
                 print("Barang mana yang ingin Anda hapus?")
@@ -116,15 +113,12 @@ def main():
                         print("Barang tidak terdapat di keranjang.  Silahkan ulangi")
                     else:
                         delete_item(order, item_name)
-
-                        print("Order Anda saat ini: ")
+                        
                         show_order(order)
                         break                  
             elif menu_choice == "4":
-                # reset_transaction()
                 print("Hello world")
             elif menu_choice == "5":
-                print("Order Anda saat ini: ")
                 show_order(order)
             elif menu_choice == "6":
                 # check_out()

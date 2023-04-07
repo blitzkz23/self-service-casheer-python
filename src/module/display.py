@@ -43,4 +43,5 @@ def show_order(order: dict):
         table.append([item_name, qty, price, total])
 
     headers = ["Item Name", "Qty", "Price", "Total"]
+    print("Order Anda saat ini: ")
     print(tabulate(table, headers = headers, tablefmt="grid"))
