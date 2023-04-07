@@ -37,8 +37,8 @@ def show_transaction_menu():
 def show_order(order: dict):
     table = []
     for item_name, item_info in order.items():
-        qty = item_info["qty"]
-        price = item_info["price"]
+        qty = int(item_info["qty"])
+        price = float(item_info["price"])
         total = qty * price
         table.append([item_name, qty, price, total])
 

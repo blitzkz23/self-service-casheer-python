@@ -44,7 +44,6 @@ def main():
             while True:
                 print("-----------------------------------------------------")
                 order = add_item(order)
-                print("--- Order telah ditambahkan! ---")
                 print("Order Anda saat ini: ")
                 show_order(order)
                 print("")
@@ -57,15 +56,77 @@ def main():
             # Update item
             print("Order Anda saat ini: ")
             show_order(order)
+
+            print("Order mana yang ingin diubah? ")
+
+            while True:
+                item_name = input("Nama barang yang ingin diubah? (masukkan nama atau masukkan 'x' untuk membatalkan): \n> ")
+                
+                if item_name.lower() == "x":
+                    break
+                elif item_name not in order:
+                    print("Nama barang tidak ditemukan.  Silahkan input lagi")
+                    continue
+                else:
+                    print("--- PEMBERITAHUAN: Silahkan kosongkan input apabila tidak perlu diubah")
+                    while True:
+                        new_name = input("1. Masukkan nama barang yang baru: ")
+                        new_qty = input("2. Masukkan jumlah pesanan yang baru: ")
+                        new_price = input("3. Masukkan harga yang baru: ")
+                            
+                        # Check if name needs to be updated
+                        if new_name != "" and new_name != item_name:
+                            update_item_name(order, item_name, new_name)
+
+                        # Check if qty needs to be updated
+                        if new_qty != "":
+                            try:
+                                qty = int(new_qty)
+                                if qty <= 0:
+                                    print("Jumlah tidak boleh kurang dari sama dengan 0")
+                                else:
+                                    update_item_qty(order, item_name, new_name, qty)
+                            except ValueError:
+                                print("Input tidak valid. Masukkan angka.")
+
+                        # Check if price needs to be updated
+                        if new_price != "":
+                            try:
+                                price = float(new_price)
+                                if price <= 0:
+                                    print("Jumlah tidak boleh kurang dari sama dengan 0")
+                                else:
+                                    update_item_price(order, item_name, new_name, price)
+                            except ValueError:
+                                print("Input tidak valid. Masukkan angka.")
+
+                        print("Order Anda setelah diperbarui: ")
+                        show_order(order)   
+                        break
         elif menu_choice == "3":
-            # delete_item()
-            print("Hello world")
+            # Delete item
+            print("Order Anda saat ini: ")
+            show_order(order)
+
+            print("Barang mana yang ingin Anda hapus?")
+            while True:
+                item_name = input("Masukkan nama barang: \n> ")
+
+                if item_name not in order:
+                    print("Barang tidak terdapat di keranjang.  Silahkan ulangi")
+                else:
+                    delete_item(order, item_name)
+
+                    print("Order Anda saat ini: ")
+                    show_order(order)
+                    break                  
         elif menu_choice == "4":
             # reset_transaction()
             print("Hello world")
         elif menu_choice == "5":
-            # check_order()
-            print("Hello world")
+            print("Order Anda saat ini: ")
+            show_order(order)
+
         elif menu_choice == "6":
             # check_out()
             print("Hello world")
