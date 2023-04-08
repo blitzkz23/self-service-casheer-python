@@ -23,8 +23,8 @@ class User(Base):
     __tablename__ = "user_account"
 
     id = Column(Integer, primary_key=True)
-    name = Column(String(30))
-    email = Column(String(50), nullable=False)
+    name = Column(String(30), nullable=False)
+    email = Column(String(50), nullable=False, unique=True)
     password = Column(String(25), nullable=False)
 
     def __init__(self, email="", name="", password=""):

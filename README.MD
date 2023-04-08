@@ -44,3 +44,6 @@ To fulfill Andi's request, here are some objective I decided the program works:
 
     # The program then will prompt you about the next instruction that you can follow!
 ```
+
+## Test Case Scenario
+The test case scenario of this program are documented in [this following link](test-case/test.MD)
