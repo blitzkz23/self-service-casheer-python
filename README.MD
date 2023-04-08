@@ -14,9 +14,10 @@ To fulfill Andi's request, here are some objective I decided the program works:
 
 ### Technical requirement:
 - Create self-service cashier program using Python language
-- Connect the program to SQL database
+- Connect the program to SQLite database
 - Use OOP and modularization to ensure the program's quality
 - Apply PEP8 principles to write clean Python program
+- Write documentation for each function for accessibility
 
 ### Bussiness requirement:
 - User could make make/login into their account to access their transaction
