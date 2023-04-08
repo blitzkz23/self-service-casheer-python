@@ -132,15 +132,12 @@ def main():
                 show_order(order)
 
                 # Calculate discount
-                total_sum = calculate_total_sum(order)
-                discount = calculate_discount(order)
-                after_disc = calculate_price_after_discount(order)
+                calculate_total_sum(order)
+                calculate_discount(order)
+                calculate_price_after_discount(order)
 
                 # Display transaction's total
-                print(f"Total keseluruhan: Rp {total_sum}")
-                if discount > 0:
-                    print(f"Selamat Anda mendapat diskon sebesar {discount} %")
-                    print(f"Sehingga yang harus Anda bayarkan Rp {after_disc} ")
+                show_checkout_order(order)
 
                 # Insert transaction to database
                 insert_to_database(db, order, current_user.id)
@@ -184,7 +181,7 @@ def main():
                 ⠛⠀⠀⠀⠀⠀⠠⠄⢀⡀⢀⣤⢠⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⠿⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣿⣦⠀⠈⠙⠀⠀⠀⠀⠀
                 ⠀⠀⠀⣐⣂⣀⣀⠀⣶⣶⣾⢉⣴⢾⣿⣷⣤⣤⣤⣤⣠⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⡄⢀⣀⠀⠄⠈⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣦⡀⣀⣀⣀⣀⠀⢀
                 ------------------------------------------------------------------------------------
-                ---                   SELAMAT TINGGAL, TERIMA KASIH SUDAH BELANJA !              ---
+                ---                   SELAMAT TINGGAL, TERIMA KASIH SUDAH BERBELANJA !           ---
                 ------------------------------------------------------------------------------------
                 """)
                 break

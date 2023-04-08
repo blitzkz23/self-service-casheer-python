@@ -155,14 +155,14 @@ def calculate_total_sum(order: dict):
     Returns:
         total_sum (float): The total sum of transaction price.    
     """
-    total_sum = 0
+    
     for item in order.values():
         qty = item["qty"]
         price = item["price"]
         item_total = qty * price
-        total_sum += item_total
+        item["total"] = item_total
 
-    return total_sum
+    return order
 
 def calculate_discount(order: dict):
     """
@@ -177,16 +177,20 @@ def calculate_discount(order: dict):
     Returns:
         discount_percentage (int): The number of discount percentage.
     """
-    total_sum = calculate_total_sum(order)
 
-    if total_sum > 500000:
-        return 7
-    elif total_sum > 300000:
-        return 6
-    elif total_sum > 200000:
-        return 5
-    else:
-        return 0
+    for item in order.values():
+        total = item["total"]
+
+        if total > 500000:
+            item["discount"] = 7
+        elif total > 300000:
+            item["discount"] = 6
+        elif total > 200000:
+            item["discount"] = 5
+        else:
+            item["discount"] = 0
+
+    return order
     
 def calculate_price_after_discount(order: dict):
     """
@@ -198,12 +202,15 @@ def calculate_price_after_discount(order: dict):
     Returns:
         price_after_discount (float): The total price after discount.
     """
-    total_sum = calculate_total_sum(order)
-    discount = calculate_discount(order)
 
-    price_after_discount = total_sum * (1 - (discount / 100))
+    for item in order.values():
+        total = item["total"]
+        discount = item["discount"]
 
-    return price_after_discount
+        price_after_discount = total * (1 - (discount / 100))
+        item["after_disc"] = price_after_discount
+
+    return order
 
 def insert_to_database(db: Session, order: dict, user_id: int):
     """
@@ -218,17 +225,24 @@ def insert_to_database(db: Session, order: dict, user_id: int):
         current_user: current logged in user
     """
 
-    for item_name, item in order.items():
-        qty = item["qty"]
-        price = item["price"]
-        total = calculate_total_sum(order)
-        disc = calculate_discount(order)
-        after_disc = calculate_price_after_discount(order)
+    try:
+        for item_name, item in order.items():
+            qty = item["qty"]
+            price = item["price"]
+            total = item["total"]
+            discount = item["discount"]
+            after_disc = item["after_disc"]
 
-        transaction = Transaction(user_id, item_name, qty,
-                                  price, total, disc, after_disc)
-        db.add(transaction)
-        db.commit()
-        coba = db.query(Transaction).filter(Transaction.item_name == item_name).first()
-        print(coba)
+            transaction = Transaction(user_id, item_name, qty,
+                                      price, total, discount, after_disc)
+            db.add(transaction)
+            db.commit()
+            transaction = db.query(Transaction).filter(Transaction.item_name == item_name).first()
+            
+            print("---------------------------")
+            print("--- Checkout berhasil ! ---")
+            print("---------------------------")
+    except Exception as e:
+        db.rollback()
+        raise Exception(f"--- ERROR: Gagal melakukan checkout {str(e)} ---")
         
