@@ -61,6 +61,7 @@
         ![](docs/16-reset-transaction.png)
 
     - User could check item on their transaction
+    
         ![](docs/15-check-transaction.png)
 
     - User could check out their transaction
