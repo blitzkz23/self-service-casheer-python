@@ -231,7 +231,7 @@ def insert_to_database(db: Session, order: dict, user_id: int):
             qty = item["qty"]
             price = item["price"]
             total = item["total"]
-            discount = item["discount"]
+            discount = item["disc"]
             after_disc = item["after_disc"]
 
             transaction = Transaction(user_id, item_name, qty,
