@@ -3,6 +3,7 @@ This module provide functionality related to transaction on main program
 """
 from sqlalchemy.orm import Session
 from ..entity.transaction import Transaction
+from .display import show_checkout_order
 
 def ask_item_input():
     """
@@ -182,13 +183,13 @@ def calculate_discount(order: dict):
         total = item["total"]
 
         if total > 500000:
-            item["discount"] = 7
+            item["disc"] = 7
         elif total > 300000:
-            item["discount"] = 6
+            item["disc"] = 6
         elif total > 200000:
-            item["discount"] = 5
+            item["disc"] = 5
         else:
-            item["discount"] = 0
+            item["disc"] = 0
 
     return order
     
@@ -205,7 +206,7 @@ def calculate_price_after_discount(order: dict):
 
     for item in order.values():
         total = item["total"]
-        discount = item["discount"]
+        discount = item["disc"]
 
         price_after_discount = total * (1 - (discount / 100))
         item["after_disc"] = price_after_discount
@@ -246,3 +247,28 @@ def insert_to_database(db: Session, order: dict, user_id: int):
         db.rollback()
         raise Exception(f"--- ERROR: Gagal melakukan checkout {str(e)} ---")
         
+def check_transaction_checkout(db: Session, customer_id: int):
+    """
+    Check the transaction that have been check outted.  This function will query from db
+    and convert it into dictionary to show it in table format
+
+    Args:
+        db (Session): database's session
+    """
+
+    checkout_dict = {}
+    try:
+        trx = db.query(Transaction).filter_by(user_id=customer_id).all()
+
+        for item in trx:
+            checkout_dict[item.item_name] = {
+                "qty": item.qty,
+                "price": item.price,
+                "total": item.total,
+                "disc": item.disc,
+                "after_disc": item.after_disc
+            }
+    except Exception as e:
+        raise e
+    
+    show_checkout_order(checkout_dict)

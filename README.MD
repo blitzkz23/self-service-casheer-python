@@ -29,7 +29,7 @@ To fulfill Andi's request, here are some objective I decided the program works:
     - 6% discount if total price > Rp 300.000
     - 5% discount if total price > Rp 200.000
 
-## How to use the program
+## How to Use
 ```
     # Create virtual environment
     On Windows: python -m venv <name>

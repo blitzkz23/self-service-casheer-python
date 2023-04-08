@@ -31,7 +31,8 @@ def show_transaction_menu():
     print("4. Batalkan transaksi")
     print("5. Lihat pesanan")
     print("6. Check out pesanan")
-    print("7. Keluar dari program")
+    print("7. Lihat pesanan yang telah di-check out")
+    print("8. Keluar dari program")
     print("------------------------------------------------------")
 
 def show_order(order: dict):
@@ -52,10 +53,9 @@ def show_checkout_order(order: dict):
         qty = int(item_info["qty"])
         price = float(item_info["price"])
         total = float(item_info["total"])
-        discount = int(item_info["discount"])
+        discount = int(item_info["disc"])
         after_disc = float(item_info["after_disc"])
         table.append([item_name, qty, price, total, discount, after_disc])
 
     headers = ["Item Name", "Qty", "Price", "Total", "Discount (%)", "Price After Disc"]
-    print("Rincian belanja Anda setelah diskon: ")
     print(tabulate(table, headers = headers, tablefmt="grid"))

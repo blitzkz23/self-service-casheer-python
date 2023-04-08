@@ -137,11 +137,17 @@ def main():
                 calculate_price_after_discount(order)
 
                 # Display transaction's total
+                print("--- Rincian belanja Anda setelah diskon: ---")
                 show_checkout_order(order)
 
                 # Insert transaction to database
                 insert_to_database(db, order, current_user.id)
             elif menu_choice == "7":
+                print("--- Rincian barang-barang yang telah Anda Checkout: ---")
+                check_transaction_checkout(db, current_user.id)
+                print("--- Silahkan bayar pada BNI 00000045xxxx sesuai harga tertera ---")
+
+            elif menu_choice == "8":
                 print("""
                             ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
                 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣶⣤⣄⡠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
