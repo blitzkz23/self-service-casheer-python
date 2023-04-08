@@ -46,4 +46,4 @@ To fulfill Andi's request, here are some objective I decided the program works:
 ```
 
 ## Test Case Scenario
-The test case scenario of this program are documented in [this following link](test-case/test.MD)
+The test case scenario of this program are documented in this following [link](test-case/test.MD)
