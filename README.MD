@@ -19,8 +19,28 @@ To fulfill Andi's request, here are some objective I decided the program works:
 - Apply PEP8 principles to write clean Python program
 
 ### Bussiness requirement:
+- User could make make/login into their account to access their transaction
 - User could make a new transaction
-- User could add, update, delete an item from cart and reset whole cart to empty transaction
-- User could check what items on their cart
-- User could check out their cart
-- Implement discount for certain price threshold
+- User could add, update, delete an item from cart and reset transaction to empty the whole cart
+- User could check what items on their transaction
+- User could check out the their transaction, which will be recorded in database
+- Cashier program will implement a discount for each individual item if the total price reach certain value
+    - 7% discount if total price > Rp 500.000
+    - 6% discount if total price > Rp 300.000
+    - 5% discount if total price > Rp 200.000
+
+## How to use the program
+```
+    # Create virtual environment
+    On Windows: python -m venv <name>
+    On Unix/Linux: python3 -m venv <name>
+
+    # Activate scripts
+    On Windows: .\<name>\Scripts\activate
+    On Unix/Linux: source <name>/bin/activate
+
+    # Run the program
+    python main.py
+
+    # The program then will prompt you about the next instruction that you can follow!
+```

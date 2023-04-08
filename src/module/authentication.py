@@ -47,7 +47,7 @@ def login(db: Session):
     while not is_input_valid:
         # Take user input
         email = input("Masukkan email: ")
-        password = input("Masukkan password: (min 6 karakter) ")        
+        password = input("Masukkan password (min 6 karakter): ")        
 
         # Call function to validate input
         is_input_valid = validate_input(email, password, input_ctx="login")
