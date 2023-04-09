@@ -1,4 +1,3 @@
-from sqlalchemy.orm import Session
 from src.database.conn import get_db
 from src.module.display import *
 from src.module.authentication import *
@@ -19,14 +18,17 @@ def main():
 
         # Ask user input
         answer = input("Masukkan jawaban Anda (1/2) \n> ")
-        if answer == "1":
-            current_user = login(db)
-            is_input_valid = True
-        elif answer == "2":
-            register(db)
-            is_input_valid = True
-        else:
-            print("Input Anda salah, silahkan pilih antara Login(1) atau Register(2).")   
+        try:
+            if answer == "1":
+                current_user = login(db)
+                is_input_valid = True
+            elif answer == "2":
+                register(db)
+                is_input_valid = True
+            else:
+                raise ValueError("Input Anda salah, silahkan pilih antara Login(1) atau Register(2).")
+        except Exception as e:
+            print(f"--- ERROR: {e}")   
 
     # Create empty dictionary to store order temporarily
     order = {} 
@@ -146,7 +148,6 @@ def main():
                 print("--- Rincian barang-barang yang telah Anda Checkout: ---")
                 check_transaction_checkout(db, current_user.id)
                 print("--- Silahkan bayar pada BNI 00000045xxxx sesuai harga tertera ---")
-
             elif menu_choice == "8":
                 print("""
                             ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
