@@ -39,6 +39,9 @@ To fulfill Andi's request, here are some objective I decided the program works:
     # Activate scripts
     On Windows: .\<name>\Scripts\activate
     On Unix/Linux: source <name>/bin/activate
+    
+    # Install dependencies
+    pip install requirements.txt
 
     # Run the program
     python main.py
