@@ -52,7 +52,7 @@ The test case scenario of this program are documented in this following [link](t
 ## Conclusion/Future Work
 This simple CLI program is pretty good stuffs that had me review my fundamental programming skills and even learn some new stuff.
 Here are few things that could be done to improve this program for future work:
-1. Implement clean architecture
+1. Implement clean architecture and S.O.L.I.D principle for cleaner and more robust approach
 2. Write more validation for edge case
 3. Refactor functions for more efficiency
 4. Dockerize program
