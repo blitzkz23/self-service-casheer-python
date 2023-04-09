@@ -11,7 +11,7 @@ def main():
     show_welcome_menu()
 
     # User authentication
-    current_user = None
+    current_user = None 
 
     is_input_valid = False
     while not is_input_valid:

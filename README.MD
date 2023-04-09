@@ -30,6 +30,10 @@ To fulfill Andi's request, here are some objective I decided the program works:
     - 6% discount if total price > Rp 300.000
     - 5% discount if total price > Rp 200.000
 
+## Flowchart
+
+![](flowchart.png)
+
 ## How to Use
 ```
     # Create virtual environment
