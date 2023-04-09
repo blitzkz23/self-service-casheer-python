@@ -3,10 +3,8 @@ This file contain Class for User to store email, name, and password.
 """
 
 from sqlalchemy import Column
-from sqlalchemy import ForeignKey
 from sqlalchemy import Integer
 from sqlalchemy import String
-from sqlalchemy.orm import relationship
 from ..database.base import Base
 
 class User(Base):

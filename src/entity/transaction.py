@@ -5,7 +5,6 @@ This file contain Class for transaction to store transaction detail's of user
 from sqlalchemy import Column
 from sqlalchemy import ForeignKey
 from sqlalchemy import Integer, String, Float
-from sqlalchemy.orm import relationship
 from ..database.base import Base
 
 class Transaction(Base):

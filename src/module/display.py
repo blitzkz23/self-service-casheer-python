@@ -36,6 +36,9 @@ def show_transaction_menu():
     print("------------------------------------------------------")
 
 def show_order(order: dict):
+    """
+    This function shows user's transaction detail.
+    """
     table = []
     for item_name, item_info in order.items():
         qty = int(item_info["qty"])
@@ -48,6 +51,9 @@ def show_order(order: dict):
     print(tabulate(table, headers = headers, tablefmt="grid"))
 
 def show_checkout_order(order: dict):
+    """
+    This function shows user's transaction detail with addition of discount after user did check out.
+    """
     table = []
     for item_name, item_info in order.items():
         qty = int(item_info["qty"])
